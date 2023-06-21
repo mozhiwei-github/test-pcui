@@ -1,0 +1,19 @@
+[INFO  2022-07-29T17:28:53,728 net.lightbody.bmp.proxy.Main] (main) Starting BrowserMob Proxy version 2.1.4 
+[INFO  2022-07-29T17:28:53,752 org.eclipse.jetty.util.log] (main) jetty-7.x.y-SNAPSHOT 
+[INFO  2022-07-29T17:28:53,923 org.eclipse.jetty.util.log] (main) started o.e.j.s.ServletContextHandler{/,null} 
+[INFO  2022-07-29T17:28:54,020 org.eclipse.jetty.util.log] (main) Started SelectChannelConnector@0.0.0.0:8081 
+[INFO  2022-07-29T17:28:55,007 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp838812606-28) Starting proxy at address: 0.0.0.0/0.0.0.0:8082 
+[INFO  2022-07-29T17:28:55,035 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp838812606-28) Proxy listening with TCP transport 
+[INFO  2022-07-29T17:28:55,344 org.littleshoot.proxy.impl.DefaultHttpProxyServer] (qtp838812606-28) Proxy started at address: /0:0:0:0:0:0:0:0:8082 
+[INFO  2022-07-29T17:29:18,560 org.littleshoot.proxy.impl.ProxyToServerConnection] (LittleProxy-0-ProxyToServerWorker-2) (CONNECTING) [id: 0x27a465b5]: Connection to upstream server failed io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection timed out: no further information: r1---sn-j5o7dn7l.gvt1.com/58.63.233.2:443
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) ~[?:1.8.0_121]
+	at sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source) ~[?:1.8.0_121]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:346) ~[browsermob-dist-2.1.4.jar:?]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:340) [browsermob-dist-2.1.4.jar:?]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:639) [browsermob-dist-2.1.4.jar:?]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:574) [browsermob-dist-2.1.4.jar:?]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:488) [browsermob-dist-2.1.4.jar:?]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:450) [browsermob-dist-2.1.4.jar:?]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:873) [browsermob-dist-2.1.4.jar:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_121]
+

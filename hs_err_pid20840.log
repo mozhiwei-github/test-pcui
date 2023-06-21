@@ -1,0 +1,248 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffd45cec7c9, pid=20840, tid=11624
+#
+# JRE version:  (11.0.9.1+11) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.9.1+11-b1145.77, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [VCRUNTIME140.dll+0xc7c9]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: org.jetbrains.git4idea.http.GitAskPassApp Password for 'http://mozhiwei@autotest.cf.com:10101': 
+
+Host: Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz, 16 cores, 31G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1741)
+Time: Mon Jul 11 06:20:18 2022 中国标准时间 elapsed time: 0.027525 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000212237b1000):  JavaThread "Unknown thread" [_thread_in_vm, id=11624, stack(0x00000032c3f00000,0x00000032c4000000)]
+
+Stack: [0x00000032c3f00000,0x00000032c4000000],  sp=0x00000032c3fff058,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [VCRUNTIME140.dll+0xc7c9]
+V  [jvm.dll+0x5da5d9]
+V  [jvm.dll+0x71e788]
+V  [jvm.dll+0x71dab0]
+V  [jvm.dll+0x599204]
+V  [jvm.dll+0x597f67]
+V  [jvm.dll+0x598e8d]
+V  [jvm.dll+0x703270]
+V  [jvm.dll+0x359049]
+V  [jvm.dll+0x6e552e]
+V  [jvm.dll+0x3c1353]
+V  [jvm.dll+0x3c3571]
+C  [jli.dll+0x5373]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x52651]
+
+
+siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), writing address 0x0000000000000000
+
+
+Registers:
+RAX=0x0000000000000000, RBX=0x000002122384d400, RCX=0x0000000000020000, RDX=0x0000000000000000
+RSP=0x00000032c3fff058, RBP=0x0000000000000001, RSI=0x000002122384d400, RDI=0x0000000000000000
+R8 =0x0000000000020000, R9 =0x0000000000000000, R10=0x0000000000000013, R11=0x0000000000000000
+R12=0x0000000100000000, R13=0x0000021221630750, R14=0x0000000000000000, R15=0x0000000000000000
+RIP=0x00007ffd45cec7c9, EFLAGS=0x0000000000010203
+
+Top of Stack: (sp=0x00000032c3fff058)
+0x00000032c3fff058:   00007ffd11b9a5d9 000002122384d400
+0x00000032c3fff068:   00000032c3fff140 00000212237b1000
+0x00000032c3fff078:   00000000000000c8 000002124ccc1940
+0x00000032c3fff088:   00007ffd11cde788 000002124ccc1940
+0x00000032c3fff098:   000002124ccc1940 0000000000000000
+0x00000032c3fff0a8:   0000000000000000 0000000800000000
+0x00000032c3fff0b8:   0000000040000000 0000000000000000
+0x00000032c3fff0c8:   0000000000010000 ffffffff00000000
+0x00000032c3fff0d8:   0000000000000000 00000212237aecd0
+0x00000032c3fff0e8:   00007ffd11cddab0 00000032c3fff140
+0x00000032c3fff0f8:   000002124ccc1940 000002124ccbfea0
+0x00000032c3fff108:   0000000000000000 0000000800000000
+0x00000032c3fff118:   00007ffd11b59204 00000032c3fff1e0
+0x00000032c3fff128:   00000032c3fff280 00000212237b1000
+0x00000032c3fff138:   0000000000000000 0000000800000000
+0x00000032c3fff148:   0000000040000000 0000000000000000 
+
+Instructions: (pc=0x00007ffd45cec7c9)
+0x00007ffd45cec6c9:   0d 66 0f 1f 44 00 00 0f 29 41 10 0f 29 09 0f 10
+0x00007ffd45cec6d9:   44 0a f0 0f 10 4c 0a e0 48 81 e9 80 00 00 00 0f
+0x00007ffd45cec6e9:   29 41 70 0f 29 49 60 0f 10 44 0a 50 0f 10 4c 0a
+0x00007ffd45cec6f9:   40 49 ff c9 0f 29 41 50 0f 29 49 40 0f 10 44 0a
+0x00007ffd45cec709:   30 0f 10 4c 0a 20 0f 29 41 30 0f 29 49 20 0f 10
+0x00007ffd45cec719:   44 0a 10 0f 10 0c 0a 75 ae 0f 29 41 10 49 83 e0
+0x00007ffd45cec729:   7f 0f 28 c1 4d 8b c8 49 c1 e9 04 74 1a 66 66 0f
+0x00007ffd45cec739:   1f 84 00 00 00 00 00 0f 11 01 48 83 e9 10 0f 10
+0x00007ffd45cec749:   04 0a 49 ff c9 75 f0 49 83 e0 0f 74 08 41 0f 10
+0x00007ffd45cec759:   0a 41 0f 11 0b 0f 11 01 49 8b c3 c3 cc cc cc cc
+0x00007ffd45cec769:   cc cc cc cc cc cc cc cc cc cc cc cc cc 66 66 0f
+0x00007ffd45cec779:   1f 84 00 00 00 00 00 4c 8b d9 0f b6 d2 49 b9 01
+0x00007ffd45cec789:   01 01 01 01 01 01 01 4c 0f af ca 49 83 f8 10 0f
+0x00007ffd45cec799:   86 02 01 00 00 66 49 0f 6e c1 66 0f 60 c0 49 81
+0x00007ffd45cec7a9:   f8 80 00 00 00 0f 86 7c 00 00 00 0f ba 25 64 5a
+0x00007ffd45cec7b9:   00 00 01 73 22 8b c2 48 8b d7 48 8b f9 49 8b c8
+0x00007ffd45cec7c9:   f3 aa 48 8b fa 49 8b c3 c3 66 66 66 66 66 66 0f
+0x00007ffd45cec7d9:   1f 84 00 00 00 00 00 0f 11 01 4c 03 c1 48 83 c1
+0x00007ffd45cec7e9:   10 48 83 e1 f0 4c 2b c1 4d 8b c8 49 c1 e9 07 74
+0x00007ffd45cec7f9:   36 66 0f 1f 44 00 00 0f 29 01 0f 29 41 10 48 81
+0x00007ffd45cec809:   c1 80 00 00 00 0f 29 41 a0 0f 29 41 b0 49 ff c9
+0x00007ffd45cec819:   0f 29 41 c0 0f 29 41 d0 0f 29 41 e0 66 0f 29 41
+0x00007ffd45cec829:   f0 75 d4 49 83 e0 7f 4d 8b c8 49 c1 e9 04 74 13
+0x00007ffd45cec839:   0f 1f 80 00 00 00 00 0f 11 01 48 83 c1 10 49 ff
+0x00007ffd45cec849:   c9 75 f4 49 83 e0 0f 74 06 41 0f 11 44 08 f0 49
+0x00007ffd45cec859:   8b c3 c3 ce c8 00 00 cb c8 00 00 f7 c8 00 00 c7
+0x00007ffd45cec869:   c8 00 00 d4 c8 00 00 e4 c8 00 00 f4 c8 00 00 c4
+0x00007ffd45cec879:   c8 00 00 fc c8 00 00 d8 c8 00 00 10 c9 00 00 00
+0x00007ffd45cec889:   c9 00 00 d0 c8 00 00 e0 c8 00 00 f0 c8 00 00 c0
+0x00007ffd45cec899:   c8 00 00 18 c9 00 00 49 8b d1 4c 8d 0d 56 37 ff
+0x00007ffd45cec8a9:   ff 43 8b 84 81 5c c8 00 00 4c 03 c8 49 03 c8 49
+0x00007ffd45cec8b9:   8b c3 41 ff e1 66 90 48 89 51 f1 89 51 f9 66 89 
+
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000021221655270, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x00000212237c8800 GCTaskThread "GC Thread#0" [stack: 0x00000032c4000000,0x00000032c4100000] [id=27260]
+  0x000002122384a800 ConcurrentGCThread "G1 Main Marker" [stack: 0x00000032c4100000,0x00000032c4200000] [id=1564]
+  0x000002122384c000 ConcurrentGCThread "G1 Conc#0" [stack: 0x00000032c4200000,0x00000032c4300000] [id=14896]
+  0x000002124ccb7800 ConcurrentGCThread "G1 Refine#0" [stack: 0x00000032c4300000,0x00000032c4400000] [id=20992]
+  0x000002124ccb8800 ConcurrentGCThread "G1 Young RemSet Sampling" [stack: 0x00000032c4400000,0x00000032c4500000] [id=27556]
+
+=>0x00000212237b1000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=11624, stack(0x00000032c3f00000,0x00000032c4000000)]
+
+Threads with active compile tasks:
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00000212237aecd0] MetaspaceExpand_lock - owner thread: 0x00000212237b1000
+
+Heap address: 0x0000000601200000, size: 8174 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000800000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.010 Loaded shared library C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff690b90000 - 0x00007ff690b9a000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\java.exe
+0x00007ffd5a7f0000 - 0x00007ffd5a9e7000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffd59cc0000 - 0x00007ffd59d7d000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffd57f00000 - 0x00007ffd581cd000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffd58330000 - 0x00007ffd58430000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffd45ce0000 - 0x00007ffd45cf7000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\VCRUNTIME140.dll
+0x00007ffd453f0000 - 0x00007ffd45409000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\jli.dll
+0x00007ffd58ce0000 - 0x00007ffd58e80000 	C:\Windows\System32\USER32.dll
+0x00007ffd58430000 - 0x00007ffd58452000 	C:\Windows\System32\win32u.dll
+0x00007ffd58ee0000 - 0x00007ffd58f0a000 	C:\Windows\System32\GDI32.dll
+0x00007ffd58460000 - 0x00007ffd5856b000 	C:\Windows\System32\gdi32full.dll
+0x00007ffd447b0000 - 0x00007ffd44a4a000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007ffd58570000 - 0x00007ffd5860d000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffd58f10000 - 0x00007ffd58fae000 	C:\Windows\System32\msvcrt.dll
+0x00007ffd596d0000 - 0x00007ffd59700000 	C:\Windows\System32\IMM32.DLL
+0x00007ffd342b0000 - 0x00007ffd3434d000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\msvcp140.dll
+0x00007ffd115c0000 - 0x00007ffd1208e000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\server\jvm.dll
+0x00007ffd58fb0000 - 0x00007ffd5905e000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffd597d0000 - 0x00007ffd5986c000 	C:\Windows\System32\sechost.dll
+0x00007ffd59060000 - 0x00007ffd59185000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffd58ba0000 - 0x00007ffd58ba8000 	C:\Windows\System32\PSAPI.DLL
+0x00007ffd505f0000 - 0x00007ffd505fa000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffd4d0b0000 - 0x00007ffd4d0d7000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffd53910000 - 0x00007ffd53919000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffd59eb0000 - 0x00007ffd59f1b000 	C:\Windows\System32\WS2_32.dll
+0x00007ffd55d40000 - 0x00007ffd55d52000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffd48620000 - 0x00007ffd48631000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\verify.dll
+0x00007ffd4b8e0000 - 0x00007ffd4bac4000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffd4b8b0000 - 0x00007ffd4b8dc000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffd58780000 - 0x00007ffd58802000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffd47170000 - 0x00007ffd47199000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\java.dll
+0x00007ffd47150000 - 0x00007ffd4715b000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\jimage.dll
+0x00007ffd41710000 - 0x00007ffd41728000 	C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;C:\Program Files\JetBrains\PyCharm 2020.3.3\jbr\bin\server
+
+VM Arguments:
+java_command: org.jetbrains.git4idea.http.GitAskPassApp Password for 'http://mozhiwei@autotest.cf.com:10101': 
+java_class_path (initial): C:/Program Files/JetBrains/PyCharm 2020.3.3/plugins/git4idea/lib/git4idea-rt.jar;C:/Program Files/JetBrains/PyCharm 2020.3.3/lib/xmlrpc-2.0.1.jar;C:/Program Files/JetBrains/PyCharm 2020.3.3/lib/commons-codec-1.14.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 13                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 536870912                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 8571060224                                {product} {ergonomic}
+   size_t MaxNewSize                               = 5142216704                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7594288                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122031976                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122031976                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_121
+CLASSPATH=C:\Program Files\Java\jdk1.8.0_121\lib;C:\Users\admin\Downloads\apache-jmeter-5.4.3\apache-jmeter-5.4.3\lib\ApacheJMeter_core.jar;C:\Users\admin\Downloads\apache-jmeter-5.4.3\apache-jmeter-5.4.3\lib\jorphan.jar;C:\Users\admin\Downloads\apache-jmeter-5.4.3\apache-jmeter-5.4.3\lib/logkit-2.0.jar
+PATH=D:\Git\mingw64\libexec\git-core;D:\Git\mingw64\libexec\git-core;D:\Git\mingw64\bin;D:\Git\usr\bin;C:\Users\admin\bin;C:\ProgramData\Oracle\Java\javapath;D:\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Java\jdk1.8.0_121\bin;D:\Git\cmd;D:\allure-2.14.0\bin;D:\chromedriver_win32;D:\autotestenvironment\autospy;D:\autotestenvironment\autospy\Scripts;C:\Users\admin\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PyCharm 2020.3.3\bin;D:\DataGrip 2021.1.3\bin;D:\Fiddler;C:\project\autospy\Scripts;C:\Users\admin\AppData\Local\Turbo\Cmd
+USERNAME=admin
+DISPLAY=:0.0
+LC_ALL=en_US.UTF-8
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 165 Stepping 5, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.1741)
+OS uptime: 6 days 10:47 hours
+
+CPU:total 16 (initial active 16) (8 cores per cpu, 2 threads per core) family 6 model 165 stepping 5, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 32689M (1441M free)
+TotalPageFile size 62445M (AvailPageFile size 3M)
+current process WorkingSet (physical memory assigned to process): 31M, peak: 31M
+current process commit charge ("private bytes"): 605M, peak: 605M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.9.1+11-b1145.77) for windows-amd64 JRE (11.0.9.1+11-b1145.77), built on Jan 16 2021 05:14:13 by "" with MS VC++ 14.0 (VS2015)
+
+END.
