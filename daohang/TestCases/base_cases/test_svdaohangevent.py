@@ -1,0 +1,222 @@
+import os
+import time
+import allure
+import pytest
+import random
+from furl import furl
+from common.log import log
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from daohang.utils import switch_to_new_window,driver_step,driver_wait_until,driver_get_reload, driver_click
+from daohang.contants import *
+
+def analysis(result,snode):
+    urllist = []
+    responselist = []
+    statuslist = []
+    snodenum='snode='+str(snode)
+    for entry in result['log']['entries']:
+        url = entry['request']['url']   #str
+        if snodenum in url:
+            urllist.append(url)
+            response = entry['response']
+            responselist.append(response)
+            status = response.get('status')
+            statuslist.append(status)
+    return urllist,responselist,statuslist
+
+def judge(snode, tp, w, text, result, word):
+    url_list, response_list, status_list = analysis(result, snode)
+    snode_str = 'snode=' + str(snode)
+    if tp == 'home':
+        tpstr = 'index'
+    else:
+        tpstr = tp
+
+    if (len(url_list) != 1): # 不只上报一次
+        if (len(url_list) != 0):
+            log.log_info(f"{word}{snode_str}---该埋点上报多次")
+            return False
+        # 该埋点未上报
+        log.log_info(f"{word}{snode_str}---该埋点未上报")
+        return False
+    if status_list[0] != 200:
+        log.log_info(f"{word}{snode_str}---该埋点上报状态异常,状态为{status_list[0]}")
+        return False
+    f = furl(url_list[0])
+    if tpstr != f.args['tp']:
+        log.log_info(f"{word}{snode_str}---tp上报检验错误")
+        log.log_info(f"期望值为{tpstr},实际值为{f.args['tp']}")
+        return False
+    if w != f.args['w']:
+        log.log_info(f"{word}{snode_str}---w上报检验错误")
+        log.log_info(f"期望值为{w},实际值为{f.args['w']}")
+        return False
+    if (text.replace(" ", "") != f.args['md5'].replace(" ", "")) and ("statTime" not in f.args['md5'].replace(" ", "")):
+        log.log_info(f"{word}{snode_str}---md5上报检验错误")
+        log.log_info(f"期望值为{text},实际值为{f.args['md5']}")
+        return False
+    log.log_info(f"{word}{snode_str}---该埋点参数校验通过")
+    return True
+
+
+@allure.epic(f'简版导航埋点案例测试')
+@allure.feature('测试场景：简版导航基础埋点上报')
+class TestSVDaoHangEvent(object):
+    @allure.story('用例：简版导航基础埋点上报 预期成功')
+    @allure.description("""
+        step1: 简版导航页面展示上报
+        step2：简版搜索框选择下拉框内容上报
+        step3: 简版搜索框输入内容点击搜索button上报
+        step4: 简版搜索框点击搜索框下方内容上报
+        step5: 简版点击名站上报
+    """)
+
+    def test_eventtest(self,chrome_driver_init,get_env_and_channel):
+        proxy,driver = chrome_driver_init
+        # 浏览器窗口最大化
+        driver.maximize_window()
+        # 设置等待函数等待时间
+        wait = WebDriverWait(driver,10)
+        # 简版导航首页
+        env,channel = get_env_and_channel
+        base_url = env + channel
+        if env in["https://www.duba.com","https://www.newduba.cn"]:
+            proxy_trace_url = f"{env}/proxy/trace"
+        else:
+            proxy_trace_url = "http://dh2.tj.ijinshan.com/__dh.gif"
+        allure.dynamic.title(f"简版导航基础埋点上报 渠道：{base_url}")
+
+        tp = channel[1:].split('.')[0]
+
+        # 场景一：简版导航页面展示上报
+        with driver_step("step1: 简版导航页面展示上报",driver):
+            #driver.get(base_url)
+            driver_get_reload(base_url)
+            proxy.new_har(proxy_trace_url)
+            # 重新刷新一次页面使得页面数据获取完全（部分接口数据首次请求无数据返回）
+            # keyboardInputByCode('F5')
+            driver.refresh()
+            log.log_info("页面刷新成功")
+            # 存储原始的窗口ID
+            original_window = driver.current_window_handle
+            assert len(driver.window_handles) == 1, "窗口个数检查失败"
+            # 等待页面加载完毕
+            driver_wait_until(driver,EC.title_is("毒霸网址大全 - 安全实用的网址导航"))
+            log.log_info("导航页面打开成功", driver=driver)
+            # 查找上报请求
+            result = proxy.har
+            text = ''
+            judge_result = judge(snode_info.page_show.value, tp, w_info.null_value.value, text, result, sv_scene_info.step1.value)
+            if judge_result:
+                log.log_pass("简版导航页面展示上报成功", driver=driver)
+            else:
+                log.log_error("简版导航页面展示上报失败", driver=driver)
+
+        # 场景二：简版搜索框选择下拉框内容上报
+        with driver_step('step2:简版搜索框选择下拉框内容上报',driver,original_window):
+            proxy.new_har(proxy_trace_url)
+            # 点击输入框，清空其内容
+            driver_click(driver, namexpath="word")
+            driver.find_element_by_name("word").clear()
+            log.log_info(f"清空搜索输入框内容", driver=driver)
+            # 点击搜索下拉框内容
+            xpath = '//*[@class="m_search_drop_down"]/span/span[@class="text g_oh"]'
+            item_list = driver.find_elements_by_xpath(xpath)
+            assert item_list, "获取简版导航搜索下拉框列表数据失败"
+            item = random.choice(item_list)
+            text = item.text
+            driver_click(driver, element=item)
+            log.log_info(f"点击搜索框下拉列表关键词：{text}")
+            # 等待搜索结果标签页打开
+            driver_wait_until(driver,EC.number_of_windows_to_be(2))
+            switch_to_new_window(driver, original_window)
+            log.log_info(f"打开{text}搜索结果标签页成功", driver=driver)
+            result = proxy.har
+            judge_result = judge(snode_info.search_click.value, tp, w_info.searchbox.value, text, result, sv_scene_info.step2.value)
+            if judge_result:
+                log.log_pass("简版搜索框选择下拉框内容上报成功", driver=driver)
+            else:
+                log.log_error("简版搜索框选择下拉框内容上报失败", need_assert=False, driver=driver)
+
+        # 场景三：简版搜索框输入内容点击搜索button上报
+        with driver_step("step3:简版搜索框输入内容点击搜索button上报", driver, original_window):
+            proxy.new_har(proxy_trace_url)
+            # 点击输入框，清空其内容
+            driver_click(driver, namexpath="word")
+            driver.find_element_by_name("word").clear()
+            # 输入搜索内容
+            text = "EventTest"
+            driver.find_element_by_name("word").send_keys(text)
+            log.log_info(f"输入搜索内容：{text}", driver=driver)
+            driver_click(driver, classxpath="search_btn")
+            log.log_info("点击搜索按钮")
+            # 等待搜索结果标签页打开
+            driver_wait_until(driver, EC.number_of_windows_to_be(2))
+            # 将窗口句柄切换到新标签页
+            switch_to_new_window(driver, original_window)
+            log.log_info(f"打开{text} 搜索结果标签页成功", driver=driver)
+            result = proxy.har
+            judge_result = judge(snode_info.search_click.value, tp, w_info.num_1.value, text, result, sv_scene_info.step3.value)
+            time.sleep(2)
+            if judge_result:
+                log.log_pass("简版搜索框输入内容点击搜索button上报成功", driver=driver)
+            else:
+                log.log_error("简版搜索框输入内容点击搜索button上报失败", driver=driver)
+        # 场景四：简版搜索框点击搜索框下方内容上报
+        with driver_step('step4:简版搜索框点击搜索框下方内容上报', driver, original_window):
+            proxy.new_har(proxy_trace_url)
+            # 点击一下body，确保焦点不在输入框上，否则会遮挡输入框下方内容
+            driver.execute_script("document.body.click()")
+            log.log_info("取消输入框上的焦点", driver=driver)
+
+            xpath = '//*[@class="m_hot_word g_clr"]/a/span'
+            item_list = driver.find_elements_by_xpath(xpath)
+            assert item_list, "简版搜索框下方热词数据获取失败"
+            # TODO: 由于有部分搜索框下方关键词被遮挡，需要循环获取没被遮挡的
+            while True:
+                item = random.choice(item_list)
+                if item.is_displayed() and item.is_enabled():
+                    break
+            # item = random.choice(item_list)
+            text = item.text
+            log.log_info(f"简版搜索框点击搜索框下方内容 {text}", driver=driver)
+            driver_click(driver, element=item)
+            driver_wait_until(driver, EC.number_of_windows_to_be(2))
+            switch_to_new_window(driver, original_window)
+            log.log_info(f"简版搜索框点击搜索框下方内容 {text} 成功", driver=driver)
+            result = proxy.har
+            judge_result = judge(snode_info.search_click.value, tp, w_info.ssrc.value, text, result, sv_scene_info.step4.value)
+            time.sleep(2)
+            if judge_result:
+                log.log_pass("简版搜索框点击搜索框下方内容上报成功", driver=driver)
+            else:
+                log.log_error("简版搜索框点击搜索框下方内容上报失败", need_assert=False)
+
+        # 场景五：简版点击名站上报
+        with driver_step("step5:简版点击名站上报",driver,original_window):
+            proxy.new_har(proxy_trace_url)
+            xpath = '//*[@class="m_coolsite g_clr"]/a/div[@w="svmz"]'
+            item_list = driver.find_elements_by_xpath(xpath)
+            assert item_list,"获取简版名站数据失败"
+            item = random.choice(item_list)
+            text = item.get_attribute("md5")
+            driver_click(driver, element=item)
+            log.log_info(f"点击简版名站：{text}")
+            # 等待名站页面打开
+            driver_wait_until(driver,EC.number_of_windows_to_be(2))
+            switch_to_new_window(driver,original_window)
+            log.log_info(f"打开名站{text}页面成功",driver=driver)
+            result = proxy.har
+            judge_result = judge(snode_info.page_click.value, tp, w_info.svmz.value, text, result, sv_scene_info.step5.value)
+            if judge_result:
+                log.log_pass("简版点击名站上报成功", driver=driver)
+            else:
+                log.log_error("简版点击名站上报失败", driver=driver)
+
+if __name__ == '__main__':
+    # pytest.main(["-v", "-s", __file__])
+    allure_attach_path = os.path.join("Outputs", "allure")
+    pytest.main(["-v", "-s", __file__, '--alluredir=%s' % allure_attach_path])
+    os.system("allure serve %s" % allure_attach_path)
+

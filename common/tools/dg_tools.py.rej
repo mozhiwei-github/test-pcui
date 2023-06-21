@@ -1,0 +1,13 @@
+diff a/tools/dg_tools.py b/tools/dg_tools.py	(rejected hunks)
+@@ -41,9 +41,9 @@
+                 i += "\\"
+             re_file_path = os.path.join(re_file_path,i)
+     if os.path.exists(re_file_path):
+-        os.remove(re_file_path)
++        remove_path(re_file_path)
+     if os.path.exists(file_path):
+-        os.rename(file_path,re_file_path)
++        remove_path(file_path,re_file_path)
+ 
+ 
+ def get_dg_tryno():

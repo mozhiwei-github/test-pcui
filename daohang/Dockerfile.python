@@ -1,0 +1,21 @@
+FROM python:3.9-alpine
+
+ADD daohang/requirements.txt /data/
+
+WORKDIR /data
+
+# 设置为上海时区
+RUN echo "Asia/Shanghai" > /etc/timezone
+
+# 配置pip阿里源，安装python依赖
+RUN set -ex \
+    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+    && apk add --no-cache --virtual .build-deps gcc python3-dev musl-dev linux-headers \
+    && apk add --no-cache jpeg-dev zlib-dev \
+    && pip3 config set global.index-url http://mirrors.aliyun.com/pypi/simple \
+    && pip3 config set install.trusted-host mirrors.aliyun.com \
+    && python3 -m pip install --no-cache-dir -r requirements.txt \
+    && rm -rf requirements.txt \
+    && apk del .build-deps
+
+CMD python3 -m http.server

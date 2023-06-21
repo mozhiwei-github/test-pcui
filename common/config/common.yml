@@ -1,0 +1,14 @@
+debug: false
+smb:
+  "10.12.0.44":
+    username: duba
+    password: 7w4P&4#i
+    port: 445
+  "10.12.36.194":
+    username: duba
+    password: 7w4P&4#i
+    port: 445
+  "10.12.32.196":
+    username: duba
+    password: 7w4P&4#i
+    port: 445

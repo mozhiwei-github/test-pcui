@@ -1,0 +1,645 @@
+duba: # 项目目录
+  path: "run_ui_test.py"  # 测试启动文件
+  desc: "毒霸UI自动化测试"  # 项目描述
+  kvm_task: "duba-ui"     # KVM虚拟机任务ID
+  branch: "duba"          # 项目所在分支
+  cases:
+    - param: "TestCases/base_cases/test_login.py"              # 用例文件相对项目目录的路径（需唯一）
+      desc: "【毒霸UI】账号登录&快速登录流程"                     # 测试用例名称
+      autosession: 1                                          # 是否运行重置毒霸相关页面等操作，0: 不执行 1: 执行  (仅毒霸项目有效)
+      relate_file: "knewvip.exe"
+    - param: "TestCases/base_cases/test_duba_update.py"
+      desc: "【毒霸UI】升级毒霸客户端流程"
+      autosession: 1
+      kvm_sync: 1                                             # 模板机运行完此用例是否进行虚拟机同步，0: 不执行 1: 执行
+      relate_file: "kislive.exe"
+    - param: "TestCases/base_cases/test_vip_center_open_operation.py"
+      desc: "【毒霸UI】VIP会员页，打开各工具检查"
+      autosession: 1
+      relate_file: "knewvip.exe"
+    - param: "TestCases/base_cases/test_vip_single_pay_page_operation.py"
+      desc: "【毒霸UI】VIP会员页，打开各工具独立支付页检查"
+      autosession: 1
+      relate_file: "knewvip.exe"
+    - param: "TestCases/base_cases/test_vip_price_check.py"
+      desc: "【毒霸UI】VIP会员页，非会员账号价格检查"
+      autosession: 1
+      relate_file: "knewvip.exe"
+    - param: "TestCases/base_cases/test_youke_price_check.py"
+      desc: "【毒霸UI】VIP会员页，游客账号价格检查"
+      autosession: 1
+      relate_file: "knewvip.exe"
+    - param: "TestCases/video_cases/test_video_func.py"
+      desc: "视频转换器，功能回归检查"
+      autosession: 0
+      relate_file: "fastvc.exe"
+    - param: "TestCases/base_cases/test_ksysslim_normal.py"
+      desc: "【毒霸UI】C盘瘦身会员卡点功能检查"
+      autosession: 0
+      relate_file: "ksysslim.exe,ksoftdeepclean.dll,klitesearch.dll,ktrashscan.dll,ktrashscanex.dll,kslimengine.dll,ksyshelper64.exe,ksyshelper.exe"
+    - param: "TestCases/base_cases/test_ksysslim_vip.py"
+      desc: "【毒霸UI】C盘瘦身会员功能检查"
+      autosession: 0
+      relate_file: "ksysslim.exe,ksoftdeepclean.dll,klitesearch.dll,ktrashscan.dll,ktrashscanex.dll,kslimengine.dll,ksyshelper64.exe,ksyshelper.exe"
+    - param: "TestCases/base_cases/test_ksysslim_scan_out.py"
+      desc: "【毒霸UI】C盘瘦身反复打开扫描并退出"
+      autosession: 0
+      relate_file: "ksysslim.exe,ksoftdeepclean.dll,klitesearch.dll,ktrashscan.dll,ktrashscanex.dll,kslimengine.dll,ksyshelper64.exe,ksyshelper.exe"
+    - param: "TestCases/base_cases/test_ksysslim_pop.py"
+      desc: "【毒霸UI】c盘瘦身-右下角预扫泡功能检查"
+      autosession: 0
+      relate_file: "ksysslim.exe,kvipnoadpop.dll,kfixstar.exe,ktrashmon.dll"
+    - param: "TestCases/base_cases/test_perfect_office.py"
+      desc: "【毒霸UI】可牛办公基础功能检查"
+      autosession: 0
+      relate_file: "ktemplate.exe,ktemplate.ini,template.pln"
+    - param: "TestCases/cleanmaster_case/test_clean_master_base.py"
+      desc: "【清理大师UI】清理大师基础功能检查"
+      autosession: 0
+      relate_file: "cmtray.exe,kismain.dll,cmcore.exe"
+    - param: "TestCases/base_cases/test_dg_ksysslim_base.py"
+      desc: "【精灵UI】C盘瘦身精灵版基础功能检查"
+      autosession: 0
+      relate_file: "ksysslim.exe,ktrashmon.dll"
+    - param: "TestCases/base_cases/test_popup_intercept_base.py"
+      desc: "【毒霸UI】弹窗拦截基本功能检查"
+      autosession: 0
+      relate_file: "kintercept.exe,kadblock.dll,ksoftpurifier.exe"
+    - param: "TestCases/base_cases/test_self_protect.py"
+      desc: "【毒霸UI】毒霸防御自保护功能检查"
+      autosession: 0
+      relate_file: "kisknl.sys,kisknl64.sys,kisknl_ev.sys,kisknl64_ev.sys,ksdecs.dll"
+    - param: "TestCases/base_cases/test_duba_defend_base.py"
+      desc: "【毒霸UI】毒霸防御基础功能检查"
+      autosession: 1
+      relate_file: "kisknl.sys,kisknl64.sys,kisknl_ev.sys,kisknl64_ev.sys,ksdecs.dll"
+    - param: "TestCases/base_cases/test_duba_defend_pop_temp.py"
+      desc: "【毒霸UI】毒霸防御泡泡卡住检查--跑10小时"
+      autosession: 1
+    - param: "TestCases/base_cases/test_screen_capture.py"
+      desc: "【毒霸UI】毒霸截图王检查"
+      autosession: 1
+      relate_file: "kscrcap.exe"
+    - param: "TestCases/cleanmaster_case/test_clean_master_interface_package.py"
+      desc: "【清理大师UI】清理大师非静默安装检查"
+      autosession: 0
+    - param: "TestCases/cleanmaster_case/test_clean_master_silence_package.py"
+      desc: "【清理大师UI】清理大师静默安装检查"
+      autosession: 1
+    - param: "TestCases/base_cases/test_mycomputerpro_base.py"
+      desc: "【毒霸UI】我的电脑pro常规功能检查"
+      autosession: 1
+      relate_file: "kexplorermain.exe,kisexploreraddin32.dll,kisexploreraddin64.dll"
+    - param: "TestCases/base_cases/test_start_menu_pro.py"
+      desc: "【毒霸UI】开始菜单Pro常规功能检查"
+      autosession: 1
+      relate_file: "softlaunchcfg.dat,ksoftlaunchpad.exe"
+    - param: "TestCases/cleanmaster_case/test_clean_master_pre_swept_trash.py"
+      desc: "【清理大师UI】垃圾清理—预扫泡功能检查"
+      autosession: 0
+      relate_file: "ktrashmon.dll,cmtray.exe"
+    - param: "TestCases/cleanmaster_case/test_clean_master_pre_swept_defrag.py"
+      desc: "【清理大师UI】碎片清理-预扫泡功能检查"
+      autosession: 0
+      relate_file: "ktrashmon.dll,cmtray.exe"
+    - param: "TestCases/cleanmaster_case/test_clean_master_pre_swept_privacy.py"
+      desc: "【清理大师UI】隐私清理-预扫泡功能检查"
+      autosession: 0
+      relate_file: "ktrashmon.dll,cmtray.exe"
+    - param: "TestCases/cleanmaster_case/test_clean_master_pre_swept_softunins.py"
+      desc: "【清理大师UI】软件卸载-预扫泡功能检查"
+      autosession: 0
+      relate_file: "ktrashmon.dll,cmtray.exe"
+    - param: "TestCases/cleanmaster_case/test_clean_master_pre_swept_sysslim.py"
+      desc: "【清理大师UI】c盘瘦身-预扫泡功能检查"
+      autosession: 0
+      relate_file: "ktrashmon.dll,cmtray.exe"
+    - param: "TestCases/base_cases/test_ksapi.py"
+      desc: "【毒霸UI】毒霸防御ksapi驱动验证"
+      autosession: 0
+      relate_file: "ksapi.sys,ksapi64.sys,ksapi_ev.sys,ksapi64_ev.sys,ksapi.dll,ksapi64.dll"
+    - param: "TestCases/base_cases/test_update_pop.py"
+      desc: "【毒霸UI】升级完成泡基础验证"
+      autosession: 0
+      relate_file: "krcmdmon.dll"
+    - param: "TestCases/base_cases/test_overall_scan.py"
+      desc: "【毒霸UI】全面扫描基础功能验证"
+      autosession: 0
+      relate_file: "kbootacc.dll,kbootopt.dll"
+    - param: "TestCases/base_cases/test_computer_accelerate.py"
+      desc: "【毒霸UI】电脑加速基础功能验证"
+      autosession: 0
+      relate_file: "kbootacc.dll,kbootopt.dll"
+    - param: "TestCases/base_cases/test_software_manage.py"
+      desc: "【毒霸UI】软件管家基础功能验证"
+      autosession: 0
+      relate_file: "ksoftmgr.exe"
+    - param: "TestCases/base_cases/test_klsoftmgr_base.py"
+      desc: "【毒霸UI】毒霸卸载王基础功能验证"
+      autosession: 0
+      relate_file: "klsoftmgr.exe,klstengine.dll"
+    - param: "TestCases/base_cases/test_daily_update.py"
+      desc: "【毒霸UI】升级平滑用例验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_ksthlp.py"
+      desc: "【毒霸UI】毒霸防御ksthlp驱动验证"
+      autosession: 0
+      relate_file: "ksthlp.sys,ksthlp64.sys"
+    - param: "TestCases/base_cases/test_rubbish_clean.py"
+      desc: "【毒霸UI】毒霸垃圾清理用例验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_privacy_cleaner_normal.py"
+      desc: "【毒霸UI】隐私清理非会员卡点验证"
+      relate_file: "kprcycleaner.exe"
+      autosession: 0
+    - param: "TestCases/base_cases/test_privacy_cleaner_vip.py"
+      desc: "【毒霸UI】隐私清理会员功能验证"
+      autosession: 0
+      relate_file: "kprcycleaner.exe"
+    - param: "TestCases/base_cases/test_file_shredding_vip.py"
+      desc: "【毒霸UI】文件粉碎会员功能验证"
+      autosession: 0
+      relate_file: "kfiledestroy64.exe,kfiledestroy.exe"
+    - param: "TestCases/base_cases/test_file_shredding_normal.py"
+      desc: "【毒霸UI】文件粉碎非会员卡点验证"
+      autosession: 0
+      relate_file: "kfiledestroy64.exe,kfiledestroy.exe"
+    - param: "TestCases/base_cases/test_driver_manager_normal.py"
+      desc: "【毒霸UI】驱动管理王非会员场景验证"
+      autosession: 0
+      relate_file: "kdriver_manager.exe"
+    - param: "TestCases/base_cases/test_right_click_scan.py"
+      desc: "【毒霸UI】毒霸右键扫描功能验证"
+      autosession: 0
+      relate_file: "kswscxex.exe,kxemain.dll"
+    - param: "TestCases/base_cases/test_device_info.py"
+      desc: "【毒霸UI】设备管理电脑状态功能验证"
+      autosession: 0
+      relate_file: "kdinfomgr.exe"
+    - param: "TestCases/base_cases/test_trash_auto_clean.py"
+      desc: "【毒霸UI】垃圾自动清理功能验证"
+      autosession: 1
+      relate_file: "ktrashautoclean.exe"
+    - param: "TestCases/base_cases/test_file_protect.py"
+      desc: "【毒霸UI】文件夹加密功能验证"
+      autosession: 0
+      relate_file: "kfp.exe"
+    - param: "TestCases/base_cases/test_right_menu_mgr.py"
+      desc: "【毒霸UI】右键菜单管理功能验证"
+      autosession: 0
+      relate_file: "krightmenumgr.exe"
+    - param: "TestCases/base_cases/test_browser_home_protect.py"
+      desc: "【毒霸UI】浏览器主页修复功能验证"
+      autosession: 0
+      relate_file: "khomeprotectvip.exe"
+    - param: "TestCases/base_cases/test_privacy_shield.py"
+      desc: "【毒霸UI】隐私护盾基础功能验证"
+      autosession: 0
+      relate_file: "kprivacyshield.exe"
+    - param: "TestCases/base_cases/test_privacy_no_trace.py"
+      desc: "【毒霸UI】隐私无痕模式基础功能验证"
+      autosession: 0
+      relate_file: "kprcynotrace.exe"
+    - param: "TestCases/base_cases/test_disk_manage_pre_swept.py"
+      desc: "【毒霸UI】磁盘管理工具预扫和弹泡验证"
+      autosession: 0
+      relate_file: "klargecleanup.exe,kdupcleanup.exe,kwechatcleanup.exe,kqqcleanup.exe"
+
+daohang:
+  path: "run_ui_test.py"
+  desc: "导航UI自动化测试"
+  docker_task: "daohang-ui"     # 容器化任务ID
+  branch: "daohang"
+  cases:
+    - param: "TestCases/base_cases/test_daohangevent.py"
+      desc: "【导航埋点】导航埋点验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_localtest.py"
+      desc: "【导航埋点】导航本地调试"
+      autosession: 0
+    - param: "TestCases/base_cases/test_officedaohangevent.py"
+      desc: "【导航埋点】办公导航埋点验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_svdaohangevent.py"
+      desc: "【导航埋点】简版导航埋点验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_yqdaohangevent.py"
+      desc: "【导航埋点】元气导航埋点验证"
+      autosession: 0
+
+wallpaper:
+  path: "run_ui_test.py"
+  desc: "壁纸UI自动化测试"
+  kvm_task: "kwallpaper-ui"     # KVM虚拟机任务ID
+  branch: "wallpaper"
+  cases:
+    - param: "TestCases/base_cases/test_dynamic_base_operation.py"
+      desc: "【PC壁纸UI】动态壁纸tab功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_static_base_operation.py"
+      desc: "【PC壁纸UI】静态壁纸tab功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_theme_base_operation.py"
+      desc: "【PC壁纸UI】电脑主题tab功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_my_base_operation.py"
+      desc: "【PC壁纸UI】我的壁纸tab功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_superdesktop_base_operation.py"
+      desc: "【PC壁纸UI】超级桌面tab功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_search_base_operation.py"
+      desc: "【PC壁纸UI】搜索功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_mobile_base_operation.py"
+      desc: "【PC壁纸UI】手机版tab功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_set_base_operation.py"
+      desc: "【PC壁纸UI】设置功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_wallpaper_update.py"
+      desc: "【PC壁纸UI】升级功能检查"
+      autosession: 0
+      kvm_sync: 1
+      relate_file: "cmlive.exe"
+    - param: "TestCases/base_cases/test_upload_wallpaper.py"
+      desc: "【PC壁纸UI】上传壁纸功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_payment_operation.py"
+      desc: "【PC壁纸UI】鱼干与会员功能检查"
+      autosession: 0
+      relate_file: "kvipgui.exe,kvipsdk.dll,kwallpaper.exe,kwallpaperui.exe,kseminstall.exe,kvipconfig.dat"
+    - param: "TestCases/base_cases/test_beautify_base_operation.py"
+      desc: "【PC壁纸UI】系统美化功能检查"
+      autosession: 0
+      relate_file: "*"
+    - param: "TestCases/base_cases/test_news_operation.py"
+      desc: "【PC壁纸UI】消息通知功能检查"
+      autosession: 0
+      relate_file: "*"
+
+liebao:
+  path: "run_ui_test.py"
+  desc: "猎豹浏览器UI自动化测试"
+  kvm_task: "liebao-ui"  # KVM虚拟机任务ID
+  branch: "liebao"
+  cases:
+    - param: "TestCases/base_cases/test_browser_update.py"
+      desc: "【猎豹浏览器】浏览器更新功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_upper_left_open_each_menu.py"
+      desc: "【猎豹浏览器】左上角菜单各项功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_upper_right_open_each_lego_menu.py"
+      desc: "【猎豹浏览器】右上角lego按钮功能检查"
+      autosession: 0
+
+pcmaster:
+  path: "run_ui_test.py"
+  desc: "金牌电脑管家UI自动化测试"
+  kvm_task: "pcmaster-ui"  # KVM虚拟机任务ID
+  branch: "pcmaster"
+  cases:
+    - param: "TestCases/base_cases/test_pcmaster_update.py"
+      desc: "【金牌电脑管家】升级功能检查"
+      autosession: 0
+      relate_file: "aslive.exe"
+    - param: "TestCases/base_cases/test_pcmaster_open_operation.py"
+      desc: "【金牌电脑管家】各页面功能展示检查"
+      autosession: 0
+      relate_file: "asadmain.exe,ascleaner.exe,ascomopt.exe,ascore.exe,aseyemain.exe,asprcycleaner.exe,assoftmgr.exe,assysopt.exe,astray.exe,asvipgui.exe,fsearch.exe,sysslim.exe"
+    - param: "TestCases/base_cases/test_pcmaster_vip_price_check.py"
+      desc: "【金牌电脑管家】会员套餐价格检查"
+      autosession: 0
+      relate_file: "asvipgui.exe,asvipsdk.dll"
+    - param: "TestCases/base_cases/test_pcmaster_search.py"
+      desc: "【金牌电脑管家】搜索功能检查"
+      autosession: 0
+      relate_file: "fsearch.exe"
+    - param: "TestCases/base_cases/test_pcmaster_commonly.py"
+      desc: "【金牌电脑管家】常用栏、天气功能检查"
+      autosession: 0
+      relate_file: "astray.exe,asweather.exe,kscrcap.exe"
+    - param: "TestCases/base_cases/test_pcmaster_software_manage.py"
+      desc: "【金牌电脑管家】软件管理检查"
+      autosession: 0
+      relate_file: "assoftmgr.exe,asstengine.dll"
+    - param: "TestCases/base_cases/test_one_key_optimize.py"
+      desc: "【金牌电脑管家】一键优化检查"
+      autosession: 0
+      relate_file: "ascomopt.exe"
+    - param: "TestCases/base_cases/test_pcmaster_trush_clean.py"
+      desc: "【金牌电脑管家】垃圾清理检查"
+      autosession: 0
+      relate_file: "ascleaner.exe,asrcmd.dll"
+    - param: "TestCases/base_cases/test_pcmaster_intercept_pop.py"
+      desc: "【金牌电脑管家】弹窗拦截检查"
+      autosession: 0
+      relate_file: "asadmain.exe"
+
+conew:
+  path: "run_ui_test.py"
+  desc: "可牛产品UI自动化测试"
+  kvm_task: "conew-ui"  # KVM虚拟机任务ID
+  branch: "conew"
+  cases:
+    - param: "TestCases/base_cases/test_kzip_base_operation.py"
+      desc: "【可牛压缩】各功能场景测试"
+      autosession: 0
+      relate_file: "kzip_main.exe,kzipservice.exe"
+    - param: "TestCases/base_cases/test_kzip_set_related.py"
+      desc: "【可牛压缩】设置相关功能测试"
+      autosession: 0
+      relate_file: "kzip_main.exe"
+    - param: "TestCases/base_cases/test_kzip_right_menu.py"
+      desc: "【可牛压缩】右键菜单功能测试"
+      autosession: 0
+      relate_file: "kzip_ext.dll,kzip_ext64.dll"
+    - param: "TestCases/base_cases/test_haoya_base_operation.py"
+      desc: "【52好压】各功能场景测试(区分可牛压缩)"
+      autosession: 0
+      relate_file: "kzip_main.exe,kzipservice.exe"
+    - param: "TestCases/base_cases/test_haoya_find_baibaoxiang.py"
+      desc: "【52好压】百宝箱场景测试"
+      autosession: 0
+      relate_file: "toolbox.exe"
+    - param: "TestCases/base_cases/test_haoya_right_menu.py"
+      desc: "【52好压】右键菜单测试(区分可牛压缩)"
+      autosession: 0
+      relate_file: "kzip_ext.dll,kzip_ext64.dll"
+    - param: "TestCases/base_cases/test_haoya_set_related.py"
+      desc: "【52好压】设置相关测试(区分可牛压缩)"
+      autosession: 0
+      relate_file: "kzip_main.exe"
+    - param: "TestCases/base_cases/test_haoya_update.py"
+      desc: "【52好压or可牛压缩】升级场景测试"
+      autosession: 0
+      relate_file: "kzipupdate.exe"
+    - param: "TestCases/base_cases/test_kantu_base_operation.py"
+      desc: "【看图】基础功能场景测试"
+      autosession: 0
+      relate_file: "fastpic.exe,kvipsdk.dll,kvipgui.exe"
+    - param: "TestCases/base_cases/test_kantu_update.py"
+      desc: "【看图】升级场景测试"
+      autosession: 0
+      relate_file: "kfpnewupdate.exe"
+    - param: "TestCases/base_cases/test_knmgr_open_operation.py"
+      desc: "【可牛电脑助手】各页面功能展示检查"
+      autosession: 0
+      relate_file: "knadmain.exe,kncleaner.exe,kncomopt.exe,kneyemain.exe,knprcycleaner.exe,knsoftmgr.exe,knsysopt.exe,knsysslim.exe,kntray.exe"
+    - param: "TestCases/base_cases/test_knmgr_update.py"
+      desc: "【可牛电脑助手】升级功能检查"
+      autosession: 0
+      relate_file: "knlive.exe"
+    - param: "TestCases/base_cases/test_knmgr_vip_price_check.py"
+      desc: "【可牛电脑助手】会员套餐价格检查"
+      autosession: 0
+      relate_file: "knvipgui.exe,knvipsdk.dll"
+    - param: "TestCases/base_cases/test_knmgr_commonly.py"
+      desc: "【可牛电脑助手】常用栏、天气功能检查"
+      autosession: 0
+      relate_file: "kntray.exe,knweather.exe,kscrcap.exe"
+    - param: "TestCases/base_cases/test_knmgr_office.py"
+      desc: "【可牛电脑助手】办公功能入口检查"
+      autosession: 0
+      relate_file: "kntray.exe"
+    - param: "TestCases/base_cases/test_knmgr_software_manage.py"
+      desc: "【可牛电脑助手】软件管理检查"
+      autosession: 0
+      relate_file: "knsoftmgr.exe,knappstore.dll"
+    - param: "TestCases/base_cases/test_knmgr_one_key_optimize.py"
+      desc: "【可牛电脑助手】一键优化检查"
+      autosession: 0
+      relate_file: "kncomopt.exe"
+    - param: "TestCases/base_cases/test_knmagr_trush_clean.py"
+      desc: "【可牛电脑助手】垃圾清理检查"
+      autosession: 0
+      relate_file: "kncleaner.exe"
+    - param: "TestCases/base_cases/test_knmagr_intercept_pop.py"
+      desc: "【可牛电脑助手】弹窗拦截检查"
+      autosession: 0
+      relate_file: "knadmain.exe"
+
+dubateam:
+  path: "run_ui_test.py"
+  desc: "毒霸团队版UI自动化测试"
+  kvm_task: "dubateam-ui"  # KVM虚拟机任务ID
+  branch: "dubateam"
+  cases:
+    - param: "TestCases/base_cases/test_dashboard_login.py"
+      desc: "【毒霸团队版】管理后台登录"
+      autosession: 0
+    - param: "TestCases/base_cases/test_dashboard_team_info.py"
+      desc: "【毒霸团队版】首页团队信息检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_dashboard_buy_vip.py"
+      desc: "【毒霸团队版】开通会员下单检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_dashboard_expand_client.py"
+      desc: "【毒霸团队版】增加终端下单检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_dashboard_expand_vip_time.py"
+      desc: "【毒霸团队版】扩充服务期限下单检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_dashboard_client.py"
+      desc: "【毒霸团队版】终端管理检查"
+      autosession: 0
+
+drivergenius:
+  path: "run_ui_test.py"
+  desc: "驱动精灵UI自动化测试"
+  kvm_task: "drivergenius-ui"  # KVM虚拟机任务ID
+  branch: "drivergenius"
+  cases:
+    - param: "TestCases/base_cases/test_dg_update.py"
+      desc: "【驱动精灵】升级程序检查"
+      autosession: 0
+      relate_file: "updateprog.exe"
+    - param: "TestCases/base_cases/test_dgupdate_pop.py"
+      desc: "【驱动精灵】升级完成泡泡弹出检查"
+      autosession: 0
+      relate_file: "usbpnp.exe"
+    - param: "TestCases/base_cases/test_dg_self_protect.py"
+      desc: "【驱动精灵】驱动精灵防御自保护功能检查"
+      autosession: 0
+      relate_file: "dgsafe.sys,dgsafe64.sys,dgsafe_ev.sys,dgsafe64_ev.sys"
+
+liebaoent:
+  path: "run_ui_test.py"
+  desc: "猎豹浏览器企业版UI自动化测试"
+  kvm_task: "liebaoent-ui"  # KVM虚拟机任务ID
+  branch: "liebaoent"
+  cases:
+    - param: "TestCases/base_cases/test_liebaoent_login.py"
+      desc: "【猎豹浏览器企业版】登录场景检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_liebaoent_home.py"
+      desc: "【猎豹浏览器企业版】平台首页检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_liebaoent_group_manage.py"
+      desc: "【猎豹浏览器企业版】组织管理页检查"
+      autosession: 0
+
+convert:
+  path: "run_ui_test.py"
+  desc: "PDF&视频转换器UI自动化测试"
+  kvm_task: "convert-ui"  # KVM虚拟机任务ID
+  branch: "convert"
+  cases:
+    - param: "TestCases/base_cases/test_convert_func.py"
+      desc: "【PDF转换器】功能检查"
+      autosession: 0
+      relate_file: "pdfconverter.exe"
+    - param: "TestCases/base_cases/test_oversea_convert_func.py"
+      desc: "【PDF转换器】海外版功能检查"
+      autosession: 0
+      relate_file: "pdfconverter.exe"
+    - param: "TestCases/base_cases/test_video_func.py"
+      desc: "【视频转换器】功能回归检查"
+      autosession: 0
+      relate_file: "fastvc.exe"
+
+reader:
+  path: "run_ui_test.py"
+  desc: "PDF阅读器UI自动化测试"
+  kvm_task: "convert-ui"  # KVM虚拟机任务ID
+  branch: "reader"
+  cases:
+    - param: "TestCases/base_cases/test_overseas_pdf_reader_func.py"
+      desc: "PDF阅读器[小渠道]，功能回归检查"
+      autosession: 0
+      relate_file: "dbpdf.exe,dgpdf.exe,fastpdf.exe,coolnewpdf.exe"
+    - param: "TestCases/base_cases/test_temporary_overseas_pdf_func.py"
+      desc: "PDF阅读器[同步大渠道]，功能回归检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_win10_right.py"
+      desc: "【PDF功能】Win10/11右键菜单入口检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_translation_func.py"
+      desc: "【全文翻译】基本功能回归检查"
+      autosession: 0
+      relate_file: "translation.exe"
+    - param: "TestCases/base_cases/test_pdf_perf.py"
+      desc: "【PDF性能】PDF性能检测模块调用测试案例"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_open_file1000_perf.py"
+      desc: "【PDF性能】打开文件1000次测试案例"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_reader_start300_perf.py"
+      desc: "【PDF性能】启动阅读器300次测试案例"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_open_files100_perf.py"
+      desc: "【PDF性能】同时打开100个小文件样本测试"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_reader_win7_perf.py"
+      desc: "【PDF功能】测试win7系统打开文件"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_update.py"
+      desc: "【PDF功能】PDF升级"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_text_button.py"
+      desc: "【PDF功能】PDF文件菜单按钮功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_reader_title.py"
+      desc: "【PDF功能】PDF阅读页签按钮功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_start_title.py"
+      desc: "【PDF功能】PDF开始页签按钮功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_label_menu.py"
+      desc: "【PDF功能】PDF标签页右键菜单功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_reader_right_menu.py"
+      desc: "【PDF功能】PDF阅读模式右键菜单检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_text_menu.py"
+      desc: "【PDF功能】PDF选中文字菜单检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_note_title.py"
+      desc: "【PDF功能】PDF注释页签按钮功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_folder_manage.py"
+      desc: "【PDF功能】PDF文件管理页面测试"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_text_right_menu.py"
+      desc: "【PDF功能】PDF选取文字右键菜单功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_bookmark_function.py"
+      desc: "【PDF功能】PDF书签功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_search_func.py"
+      desc: "【PDF功能】PDF搜索替换功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_print.py"
+      desc: "【PDF功能】PDF高级打印功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_member_function.py"
+      desc: "【PDF功能】PDF会员功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_page_edit.py"
+      desc: "【PDF功能】PDF页面编辑功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_picture_edit.py"
+      desc: "【PDF功能】PDF图片编辑功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_copy_paste.py"
+      desc: "【PDF功能】PDF阅读器复制粘贴功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_new_page_func.py"
+      desc: "【PDF功能】PDF阅读器新建TAB功能检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_overseas_elements.py"
+      desc: "【PDF多语言】PDF多语言一级界面检查"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_multi_right_file.py"
+      desc: "【PDF右键】桌面右键菜单批量文件用例"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_open_multitypefiles.py"
+      desc: "【PDF多文件验证】打开多类型PDF文件"
+      autosession: 0
+    - param: "TestCases/base_cases/test_pdf_reader_func.py"
+      desc: "PDF阅读器，功能回归检查（暂时弃用）"
+      autosession: 0
+
+office:
+  path: "run_ui_test.py"
+  desc: "可牛办公UI自动化测试"
+  kvm_task: "office-ui" # KVM虚拟机任务ID
+  branch: "office"
+  cases:
+    - param: "TestCases/base_cases/test_keniu_web.py"
+      desc: "【办公UI】可牛办公web站基础用例验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_side_office.py"
+      desc: "【办公UI】可牛办公侧边栏基础用例验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_keniuoffice_client.py"
+      desc: "【办公UI】可牛办公独立版基础用例验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_keniuoffice_seo.py"
+      desc: "【办公UI】可牛办公seo验证"
+      autosession: 0
+    - param: "TestCases/base_cases/test_knstore.py"
+      desc: "【办公UI】可牛应用市场基础用例验证"
+      autosession: 0
+
+jiankong: # 项目目录
+  path: "run_ui_test.py"  # 测试启动文件
+  desc: "监控UI自动化测试"  # 项目描述
+  kvm_task: "duba-ui"     # KVM虚拟机任务ID
+  branch: "jiankong"          # 项目所在分支
+  cases:
+    - param: "TestCases/base_cases/test_browser_homepage.py"
+      desc: "【监控UI】毒霸浏览器主页保护解锁场景测试"
+      autosession: 0
+    - param: "TestCases/base_cases/test_browser_homepage_dg.py"
+      desc: "【监控UI】精灵浏览器主页保护解锁场景测试"
+      autosession: 0
